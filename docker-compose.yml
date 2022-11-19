@@ -1,0 +1,43 @@
+version: '3.9'
+services:
+  db:
+    container_name: postgres_container
+    image: postgres
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "8001:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+  pgadmin:
+    container_name: pgadmin4_container
+    image: dpage/pgadmin4
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "8002:80"
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    depends_on:
+      - db
+  backend:
+    container_name: backend_api
+    build: backend/
+    command: uvicorn app.main:app --reload --workers 1 --host 0.0.0.0 --port 80
+    volumes:
+      - ./backend/app:/usr/src/app
+    ports:
+      - "8003:80"
+    depends_on:
+      - db
+  frontend:
+    container_name: frontend_vue
+    build: frontend/
+    depends_on:
+      - backend
+
+volumes:
+ db-data:
+ pgadmin-data:
