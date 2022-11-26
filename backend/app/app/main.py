@@ -3,7 +3,22 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.api.v1 import crud as v1
 
-app = FastAPI()
+tags_metadata = [
+    {
+        "name": "users",
+        "description": "API to manage User database"
+    },
+    {
+        "name": "tasks",
+        "description": "API to manage tasks"
+    },
+    {
+        "name": "tags",
+        "description": "API to manage tags"
+    }
+]
+
+app = FastAPI(openapi_tags=tags_metadata)
 
 origins = ["*"]
 

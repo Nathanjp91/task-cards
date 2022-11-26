@@ -14,6 +14,12 @@ class TaskCreate(TaskBase):
     pass
 
 
+class TaskUpdate(SQLModel):
+    name: Optional[str] = Field(default=None, max_length=64)
+    text: Optional[str] = Field(default=None, max_length=1024)
+    image_url: Optional[str] = Field(default=None, max_length=256)
+    value: Optional[int] = Field(default=None)
+
 class Task(TaskBase, table=True):
     id: int = Field(default=None, primary_key=True)
 
@@ -29,6 +35,9 @@ class TagBase(SQLModel):
 class TagCreate(TagBase):
     pass
 
+
+class TagUpdate(SQLModel):
+    name: Optional[str] = Field(default=None, max_length=64)
 
 class Tag(TagBase, table=True):
     id: int = Field(default=None, primary_key=True)

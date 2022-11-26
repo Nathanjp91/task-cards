@@ -1,6 +1,6 @@
 """ This is an example and should be replaced """
 from sqlmodel import SQLModel, Field
-
+from typing import Optional
 
 class UserBase(SQLModel):
     email: str
@@ -11,6 +11,20 @@ class UserBase(SQLModel):
 class UserCreate(UserBase):
     pass
 
+    def into_db_model(self):
+        model = User(
+            email=self.email,
+            password = self.password,
+            admin = self.admin
+        )
+        return model
+
+
+class UserUpdate(SQLModel):
+    email: Optional[str] = None
+    password: Optional[str] = None
+    admin: Optional[bool] = None
+    
 
 class User(UserBase, table=True):
     id: int = Field(default=None, primary_key=True)

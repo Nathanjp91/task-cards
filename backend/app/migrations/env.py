@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 from alembic import context
 
 from app.models.users import User
-from app.models.tasks import Task
+# from app.models.tasks import Task
 
 load_dotenv()
 

@@ -1,8 +1,8 @@
-"""init
+"""add user
 
-Revision ID: 66927367b62d
+Revision ID: 889f6c7e0da9
 Revises: 
-Create Date: 2022-11-15 22:29:07.116781
+Create Date: 2022-11-20 16:58:12.593818
 
 """
 from alembic import op
@@ -11,7 +11,7 @@ import sqlmodel
 
 
 # revision identifiers, used by Alembic.
-revision = '66927367b62d'
+revision = '889f6c7e0da9'
 down_revision = None
 branch_labels = None
 depends_on = None
