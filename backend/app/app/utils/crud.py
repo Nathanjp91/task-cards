@@ -3,7 +3,7 @@ from sqlalchemy.future import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlmodel import SQLModel
 from typing import Callable, Union, List, Any, Optional
-from pydantic import BaseSettings, BaseModel
+from pydantic import BaseModel
 
 
 class RouteSettings(BaseModel):
