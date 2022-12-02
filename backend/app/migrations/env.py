@@ -12,6 +12,7 @@ from dotenv import load_dotenv
 from alembic import context
 
 from app.models.users import User, Group, GroupUserLink
+from app.models.tasks import Task, Tag, TaskTagLink
 # from app.models.tasks import Task
 
 load_dotenv()

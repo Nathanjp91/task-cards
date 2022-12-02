@@ -3,9 +3,9 @@ from sqlmodel import SQLModel, Field, Relationship
 from typing import Optional, List
 
 
-# class TaskTagLink(SQLModel, table=True):
-#     task_id: int = Field(foreign_key='task.id', primary_key=True)
-#     tag_id: int = Field(foreign_key='tag.id', primary_key=True)
+class TaskTagLink(SQLModel, table=True):
+    task_id: int = Field(foreign_key='task.id', primary_key=True)
+    tag_id: int = Field(foreign_key='tag.id', primary_key=True)
 
 
 class TaskBase(SQLModel):
@@ -13,7 +13,7 @@ class TaskBase(SQLModel):
     text: str = Field(max_length=1024)
     image_url: Optional[str] = Field(default=None, max_length=256)
     value: Optional[int] = Field(default=None)
-    # tags: List["tag"] = Relationship(back_populates='task', link_model=TaskTagLink)
+    tags: List["tag"] = Relationship(back_populates='task', link_model=TaskTagLink)
     
 
 
@@ -37,7 +37,7 @@ class Task(TaskBase, table=True):
 
 class TagBase(SQLModel):
     name: str = Field(max_length=64)
-    # tasks: List["tag"] = Relationship(back_populates='task', link_model=TaskTagLink)
+    tasks: List[Task] = Relationship(back_populates='tag', link_model=TaskTagLink)
 
 
 
